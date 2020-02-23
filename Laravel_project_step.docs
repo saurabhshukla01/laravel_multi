@@ -1,0 +1,2140 @@
+			Laravel Project  2020
+
+Laravel Another Installing using commands make a project in localhost url create project ⇒ Date 13 feb 2020 ..
+-----------------------------------------
+
+Url :  https://www.youtube.com/watch?v=-2Km_oQMKAo&list=PL_o2jYI8ZAem6trK2765nPBEAskbGgZUT&index=1
+Auth password and registration link in laravel ⇒
+https://www.techiediaries.com/laravel-authentication-tutorial/
+Migration and migrate command url normal and seed using url ⇒
+https://tutsforweb.com/make-migration-command-parameters-laravel/
+https://laravel-news.com/migrate-fresh
+https://laravel.com/docs/5.8/migrations
+
+Upload csrf_token in Laravel_project url is :  
+https://www.youtube.com/watch?v=yk89FFjoj2E&list=PL_o2jYI8ZAem6trK2765nPBEAskbGgZUT&index=18
+
+Multiple authentication using the auth in laravel project ⇒
+https://www.siddharthshukla.in/blog/how-to-use-multiple-authentication-guards-in-laravel-6-app-2/
+https://www.siddharthshukla.in/blog
+
+
+
+
+
+
+
+
+
+
+Go to main xampp inside htdocs folder open path cmd please ⇒
+
+Install composer using this command : 
+
+$ composer global require laravel/installer
+//$ %USERPROFILE%\AppData\Roaming\Composer\vendor\bin
+
+Create project command : 
+
+$ laravel new project-name
+$ cd project-name
+$ php artisan serve
+Output : link is ..   http://127.0.0.1:8000/
+
+Create controller using command :
+
+$ Php artisan make:controller controller-name 
+ 
+Create model using command :
+
+$ php artisan make:model model-name
+
+--------------------------------------------------------------
+How to print value of request hitting value in php controller using Laravel Path url method etc …
+
+Code of controller ==
+
+public function title(Request $req)
+{
+   echo $url= $req->url()."<br>";
+   echo $url= $req->method()."<br>";
+   echo $url= $req->path()."<br>";
+   print_r($req->input());
+}
+
+How to post data using csrf_token to another page ….
+
+Controller create after write code 
+app/http/controller/examplecontroller.php ⇒
+
+
+public function form_data()
+{
+   return view('form_data');
+}
+
+public function get_data(Request $req)
+{
+   $show = $req->input();
+   print_r($show);
+}
+
+Make views for html files create html file ….
+file name ….   (form_data.blade.php) like that,
+resource/views/form_data.blade.php ⇒
+
+
+<form action="get_form/" method="POST">
+@csrf
+<label for="name"> Enter The Name </label>
+<input type="text" name="name"><br>
+<label for="email"> Enter The Email </label>
+<input type="text" name="email"><br>
+<label for="password"> Enter Password </label>
+<input type="text" name="pwd"><br>
+<input type="submit" value="submit">
+
+</form>
+
+
+Url.php (route folder inside a file defines her url)...
+route/web.php ⇒
+
+Route::get('form/','examplecontroller@form_data');
+Route::post('get_form/','examplecontroller@get_data');
+Show data of output is :
+Array ( [_token] => LhJguGmLDsyRJADWrKcAK8bSdOY3x5sOKVU4jBdN [name] => ram kumar [email] => mishraG@gmail.com [pwd] => saurav sebaj )
+
+---------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+  ⇒ Laravel Framework Using Commands  ⇒
+-----------------------------------------
+
+Laravel Framework using commands :
+
+Installing PHP 7.2
+$ sudo add-apt-repository ppa:ondrej/php
+$ sudo apt-get update
+
+install PHP 7.2 using the following command:
+$ sudo apt-get install php7.2
+$ sudo apt-get install php
+
+Installing the Required PHP 7.2 Modules
+$ sudo apt-get install php7.2 php7.2-cli php7.2-common php7.2-json php7.2-opcache php7.2-mysql php7.2-mbstring php7.2-mcrypt php7.2-zip php7.2-fpm php7.2-xml
+
+Installing PHP Composer
+$ cd ~
+$ curl -sS https://getcomposer.org/installer -o composer-setup.php
+
+install composer globally on your system by using the following command
+$ sudo php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+$ composer
+
+--------------------------------------------------------------------
+
+Create A project In Laravel Commands : 
+
+$ composer create-project  --prefer-dist  laravel/laravel laravel-first-crud-app
+
+You can verify the installed version in your project using:
+
+$ cd laravel-first-crud-app
+$ php artisan -V
+Laravel Framework 6
+
+Installing the Front-End Dependencies
+
+$ npm install
+
+Creating a MySQL Database
+$ mysql -u root -p
+mysql> create database db;
+
+Open the .env file and update the credentials to access your MySQL database:
+
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=db
+DB_USERNAME=root
+DB_PASSWORD=******
+
+
+migrate command to create your database
+
+$ php artisan migrate
+
+create our first Laravel Model. In your terminal, run the following command:
+
+$ php artisan make:model Contact --migration
+
+create the contacts table in the database using the following command:
+
+$ php artisan migrate
+
+Creating the Controller and Routes
+
+$ php artisan make:controller ContactController --resource
+
+
+Implementing the Create Operation and Adding a Form
+
+Add to controller file use a library
+
+use App\Contact;
+
+ ==========================================
+How to create error in form required value using php in Laravel project ⇒
+
+Controller.php ⇒  
+Code :  
+
+
+public function form_data()
+{
+   return view('form_data');
+}
+
+public function get_data(Request $req)
+{
+   $req->validate(['name'=>'required',
+                   'email'=>'required | min:5 | max:30',
+                   'password'=>'required | min:6 | max:16'
+                  ]);
+   $show = $req->input();
+   //$show = $req->input('_token');
+   //$show = $req->input('name');
+   //$show = $req->input('email');
+   //$show = $req->input('pwd');
+   print_r($show);
+}
+
+
+views/form.blade.php ⇒
+Code :   All error show in list format  :  
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<form class="container" action="{{ url('get_form/') }}" method="POST">
+ @csrf
+ @if($errors->any())
+     <div class="alret alert-danger">
+         <ul>
+             @foreach($errors->all() as $error)
+             <li>{{ $error }}</li>
+             @endforeach
+         </ul>
+     </div>
+ @endif
+ <h2 class="text-center"> Fill Form </h2>
+ <div class="form-group">
+   <label for="name">Name</label>
+   <input type="text" class="form-control" name="name" placeholder="Enter the name">
+ </div>
+ <div class="form-group">
+   <label for="email">Email address</label>
+   <input type="email" class="form-control" name="email" placeholder="name@example.com">
+ </div>
+ <div class="form-group">
+   <label for="password">Enter Password</label>
+   <input type="text" class="form-control" name="password" placeholder="Enter the Password">
+ </div>
+ <div class="form-group">
+   <label for="select_opt">Example select</label>
+   <select class="form-control" name="select_opt">
+     <option>1</option>
+     <option>2</option>
+     <option>3</option>
+     <option>4</option>
+     <option>5</option>
+   </select>
+ </div>
+ <div class="form-group">
+   <label for="file_name">Example file input</label>
+   <input type="file" class="form-control-file" name="file_name">
+ </div>
+ <div class="form-group">
+   <label for="txt">Example textarea</label>
+   <textarea class="form-control" rows="3" name="txt"> Type here .....</textarea>
+ </div>
+
+ <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
+Route/web.php ⇒
+Code : 
+
+Route::get('form/','examplecontroller@form_data');
+Route::post('get_form/','examplecontroller@get_data');
+
+
+views/form.blade.php ⇒
+Code :   All error show in column wise errors show   : 
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<form class="container" action="{{ url('get_form/') }}" method="POST">
+ @csrf
+ <h2 class="text-center"> Fill Form </h2>
+ <div class="form-group">
+   <label for="name">Name</label>
+   @error('name')
+       <div class="alert alert-danger">{{ $message }}</div>
+   @enderror
+   <input type="text" class="form-control" name="name" placeholder="Enter the name">
+ </div>
+ <div class="form-group">
+   <label for="email">Email address</label>
+   @error('email')
+       <div class="alert alert-danger">{{ $message }}</div>
+   @enderror
+   <input type="email" class="form-control" name="email" placeholder="name@example.com">
+ </div>
+ <div class="form-group">
+   <label for="password">Enter Password</label>
+   @error('password')
+       <div class="alert alert-danger">{{ $message }}</div>
+   @enderror
+   <input type="text" class="form-control" name="password" placeholder="Enter the Password">
+ </div>
+ <div class="form-group">
+   <label for="select_opt">Example select</label>
+   <select class="form-control" name="select_opt">
+     <option>1</option>
+     <option>2</option>
+     <option>3</option>
+     <option>4</option>
+     <option>5</option>
+   </select>
+ </div>
+ <div class="form-group">
+   <label for="file_name">Example file input</label>
+   <input type="file" class="form-control-file" name="file_name">
+ </div>
+ <div class="form-group">
+   <label for="txt">Example textarea</label>
+   <textarea class="form-control" rows="3" name="txt"> Type here .....</textarea>
+ </div>
+
+ <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+======================================================================
+Middleware create commands :
+
+$  php artisan make:middleware middleware_name
+
+Middleware/Seat.php ⇒
+
+Code ⇒
+
+<?php
+
+namespace App\Http\Middleware;
+
+use Closure;
+
+class Seat
+{
+   /**
+    * Handle an incoming request.
+    *
+    * @param  \Illuminate\Http\Request  $request
+    * @param  \Closure  $next
+    * @return mixed
+    */
+   public function handle($request, Closure $next)
+   {
+       //middleware('seatmiddleware');
+       if ($request->input('seat_no') <=10){
+           echo "This is ladies Seat";
+       }
+       else{
+           echo "This is common Seat for all";
+       }
+
+       return $next($request);
+   }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+Controller create commands :
+
+$  php artisan make:controller controller_name
+
+
+Make controller ⇒  App/auth/controller/Bus.php
+
+Code ⇒
+
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+class Bus extends Controller
+{
+   public function Seat(){
+       //echo "Running seatmiddleware";
+   }
+}
+
+
+
+route/web.php ⇒
+
+Code ⇒
+
+Route::get('seat/','Bus@Seat')->middleware('seatmiddleware');
+
+app/http/kernel.php ⇒
+
+Code ⇒
+
+protected $routeMiddleware = [
+   'seatmiddleware' => \App\Http\Middleware\Seat::class,
+];
+
+
+Check url is  :  http://127.0.0.1:8000/seat?seat_no=1
+Url is : http://127.0.0.1:8000/seat
+
+======================================================================
+
+
+
+
+
+ How to create login page in Laravel Project using yours authentication login page ⇒
+
+Make controller :   app/Http/controller/Users.php ⇒ code ⇒
+
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+class Users extends Controller
+{
+   public function login()
+   {
+       return view('login');
+   }
+
+   public function login_check(Request $req)
+   {
+        $req->validate(['name'=>'required']);
+        $req->session()->put('user_info',$req->input('name'));
+        $user_name = $req->session()->get('user_info');
+        if ($user_name ="Saurabh")
+        {
+             // echo $user_name;
+             echo "Welcome Saurabh";
+        }
+        else{
+               echo "No Entry";
+        }
+
+   }
+
+}
+
+
+Make views html file login.blade.php  ⇒     resource/views/login.blade.php ⇒ code ⇒
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<form class="container" action="{{ url('/login_check/') }}" method="POST">
+ @csrf
+ @if($errors->any())
+     <div class="alret alert-danger">
+         <ul>
+             @foreach($errors->all() as $error)
+             <li>{{ $error }}</li>
+             @endforeach
+         </ul>
+     </div>
+ @endif
+ <h2 class="text-center"> Login Form </h2>
+ <div class="form-group">
+   <label for="name">Name</label>
+   <input type="text" class="form-control" name="name" placeholder="Enter the name">
+ </div>
+ <div class="form-group">
+   <label for="email">Email address</label>
+   <input type="email" class="form-control" name="email" placeholder="name@example.com">
+ </div>
+ <div class="form-group">
+   <label for="password">Enter Password</label>
+   <input type="text" class="form-control" name="password" placeholder="Enter the Password">
+ </div>
+ <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
+route/web.php ⇒ code ⇒
+
+Route::get('login/','Users@login');
+Route::post('login_check/','Users@login_check');
+
+
+Check views on this url :  http://127.0.0.1:8000/login
+
+Output is  :    Welcome Saurabh 
+
+
+====================================================================
+
+
+How to dump all database value in view page array form ⇒
+
+Before create a database in mysql admin in php ⇒ After create table inside database ⇒ after connection of database using (.env) files ⇒  
+Yours project inside automatically create a file (.env file)
+Edit some code like that …
+
+Code change in (.env file is ) …
+
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=blogdb
+DB_USERNAME=root
+DB_PASSWORD=
+
+
+After creating a table users with column id name email and password   ⇒  fill some data in the same table and after dump all data in view 
+
+
+Create a controller using commands : 
+
+$ php artisan make:controller controller_name
+
+app/http/controller/users.php ⇒  code ⇒
+
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
+class Users extends Controller
+{
+   
+   public function users_list()
+   {
+       $user_list = DB::select('select * from users');
+       print_r($user_list);
+   }
+
+}
+
+
+route/web.php ⇒  code  ⇒
+
+//find the DB all value in Array form
+Route::get('users_list','Users@users_list');
+
+
+Checking all dump data in database so url is ⇒
+
+http://127.0.0.1:8000/users_list
+
+
+Output all database data in array form show to all in view to the user.
+
+====================================================================
+
+Fetch data and build query in Laravel project data ⇒
+
+Controller.php some changes to fetch data first and build data ⇒
+
+Code : ⇒ app/http/controller/users.php ⇒
+
+public function users_list()
+{
+   //$user_list = DB::select('select * from users');
+   //$user_list = DB::table('users')->get();
+
+   //get data in database value using name by first fetch data
+   //$user_list = DB::table('users')->where('name','saurabh')->first();
+
+   //find data using id if user know this id so fetch data in database table users id =3
+   //$user_list = DB::table('users')->find(3);
+
+   // find what is data in yours database table using count method
+   //$user_list = DB::table('users')->count();
+
+   //how to insert data in table of database when data insert print 1 data insert successfully in database..
+
+   $user_list = DB::table('users')->insert(['name'=>'test',
+                                            'email'=>'email@gmail.com',
+                                            'password'=>'test@123'
+                                            ]);
+  
+   //how to update value query to database insert and updated successfully in database same table ..
+   //$user_list = DB::table('users')->where(['name'=>'soni'])->update(['email'=>'soni1@gmail.com']);
+   //how to delete value from data on database deleted successfully from same table data delete by row ......
+   //$user_list = DB::table('users')->where(['name'=>'test'])->delete();
+   print_r($user_list);
+}
+
+
+
+
+Check data in same url :  http://127.0.0.1:8000/users_list
+====================================================================
+
+How to create pagination of database value in laravel project ⇒
+
+Using command make controller  ⇒
+$ php artisan make:controller userblog
+
+Create a controller userblog.php inside app/http/contoller/userblog.php ⇒   code ⇒
+
+
+<?php
+
+namespace App\Http\Controllers;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
+use App\User;
+
+class Userblog extends Controller
+{
+   public function index(){
+
+       //$blog = DB::table('users')->get();
+       $blog = User::paginate(10);
+       //print_r($blog);
+       return view('blog1',compact('blog'));
+   }
+}
+
+
+--------------------------------------------------
+
+After create a views html page (path is resource/views/blog1.blade.php ⇒   code ⇒
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<h2 class="text-center">Database Table Information </h2><br>
+<table id="" class="table table-striped table-bordered table-sm container" cellspacing="0" width="100%">
+ <thead>
+   <tr>
+     <th class="th-sm">id</th>
+     <th class="th-sm">name</th>
+     <th class="th-sm">email</th>
+     <th class="th-sm">password</th>
+     <th class="th-sm">Action</th>
+   </tr>
+ </thead>
+ <tbody>
+       @if(!empty($blog) && $blog->count())
+           @foreach($blog as $key => $value)
+               <tr>
+                   <td>{{ $value->id }}</td>
+                   <td>{{ $value->name }}</td>
+                   <td>{{ $value->email }}</td>
+                   <td>{{ $value->password }}</td>
+                   <td>
+                       <button class="btn btn-info">Add</button>
+                       <button class="btn btn-primary">Edit</button>
+                       <button class="btn btn-danger">Delete</button>
+                   </td>
+               </tr>
+           @endforeach
+       @else
+           <tr>
+               <td colspan="10">There are no data.</td>
+           </tr>
+       @endif
+   </tbody>
+</table>
+<nav aria-label="Page navigation example">
+ <ul class="pagination">
+   {!! $blog->links() !!}
+ </ul>
+
+</nav>
+
+
+
+--------------------------------------------------
+
+Make url in route/web.php ⇒  code ⇒
+
+// create a pagination url in laravel project using database value
+Route::get('page/','Userblog@index');
+
+
+------------------------
+Show output this url is :  http://127.0.0.1:8000/page
+
+
+===================================================================
+
+How to create a table and migrate table and migration also in laravel⇒ command is run on cmd prompt..
+
+Important fresh command on migration table and migrate also ⇒
+$  php artisan migrate:fresh --seed
+$  php artisan migrate:refresh
+$  php artisan migrate:fresh
+
+-------------------------------------------------------
+Create migration table in Laravel project command ⇒
+
+$ php artisan make:migration create_users_table
+$ php artisan make:migration create_posts_table
+$ php artisan make:migration create_users_table --create=users
+$ php artisan make:migration add_votes_to_users_table --table=users
+$ php artisan migrate --force
+$ php artisan migrate
+
+Running All Outstanding Migrations For A Path
+$ php artisan migrate --path=app/foo/migrations
+Running All Outstanding Migrations For A Package
+$ php artisan migrate --package=vendor/package
+Note: If you receive a "class not found" error when running migrations, try running the composer dump-autoload command.
+
+Forcing Migrations In Production
+$ php artisan migrate --force
+Rolling Back Migrations
+Rollback The Last Migration Operation
+$ php artisan migrate:rollback
+Rollback all migrations
+$ php artisan migrate:reset
+Rollback all migrations and run them all again
+$ php artisan migrate:refresh
+
+$ php artisan migrate:refresh --seed
+Database Seeding
+Laravel also includes a simple way to seed your database with test data using seed classes. All seed classes are stored in app/database/seeds. Seed classes may have any name you wish, but probably should follow some sensible convention, such as UserTableSeeder, etc. By default, a DatabaseSeeder class is defined for you. From this class, you may use the call method to run other seed classes, allowing you to control the seeding order.
+Example Database Seed Class
+class DatabaseSeeder extends Seeder {
+
+    public function run()
+    {
+        $this->call('UserTableSeeder');
+
+        $this->command->info('User table seeded!');
+    }
+
+}
+
+class UserTableSeeder extends Seeder {
+
+    public function run()
+    {
+        DB::table('users')->delete();
+
+        User::create(array('email' => 'foo@bar.com'));
+    }
+
+}
+To seed your database, you may use the db:seed command on the Artisan CLI:
+$ php artisan db:seed
+By default, the db:seed command runs the DatabaseSeeder class, which may be used to call other seed classes. However, you may use the --class option to specify a specific seeder class to run individually:
+$ php artisan db:seed --class=UserTableSeeder
+You may also seed your database using the migrate:refresh command, which will also rollback and re-run all of your migrations:
+$ php artisan migrate:refresh --seed
+
+
+--------------------------------------------------
+
+Create a table blog inside database and running all command 
+Create table user choice using command is 
+
+$ php artisan make:migration create_blog_table
+$ php artisan migrate
+
+16_02_2020_Create_blog_table : ⇒  code change some value ⇒
+
+public function up()
+{
+   Schema::create('blog', function (Blueprint $table) {
+       $table->bigIncrements('id');
+       $table->string('title');
+       $table->string('description');
+       $table->string('product_name');
+       $table->string('product_price');
+       $table->timestamps();
+   });
+}
+
+
+After run some command using migrate and migration again ⇒
+Important fresh command on migration table and migrate also But All Data is truncate and create table column using commands ⇒
+
+$  php artisan migrate:fresh --seed
+$  php artisan migrate:refresh
+$  php artisan migrate:fresh
+
+Create table successfully in you database table check all value created on table column url is http://localhost/phpmyadmin/sql.php?server=1&db=blogdb&table=blog&pos=0
+
+====================================================================
+
+How to load view page in using php code with inheritance one blade html page to another page add using inheritance class like as ..
+
+
+Create route/web.php⇒ view url link create this file ⇒
+code is ⇒
+
+
+Route::get('viewblog/', function () {
+   return view('blog_list');
+});
+
+------------------------------------
+Path is ⇒ resource/views/index.blade.php
+
+Create a views page ⇒  index.blade.php ⇒
+Code is ⇒
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+ <title>@yield('title')</title>
+ <style>
+ .fakeimg {
+   height: 200px;
+   background: #aaa;
+ }
+ </style>
+</head>
+<body>
+   @section('header')
+       <div class="jumbotron text-center" style="margin-bottom:0">
+         <h1>This Is Top header Blog</h1>
+         <p>Resize this responsive page to see the effect!</p>
+       </div>
+
+       <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+         <a class="navbar-brand" href="#">BlogView</a>
+         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+           <span class="navbar-toggler-icon"></span>
+         </button>
+         <div class="collapse navbar-collapse" id="collapsibleNavbar">
+           <ul class="navbar-nav">
+             <li class="nav-item">
+               <a class="nav-link" href="#">Home</a>
+             </li>
+             <li class="nav-item">
+               <a class="nav-link" href="#">Blog</a>
+             </li>
+             <li class="nav-item">
+               <a class="nav-link" href="#">About</a>
+             </li>
+             <li class="nav-item">
+               <a class="nav-link" href="#">welcome</a>
+             </li>
+           </ul>
+         </div>
+       </nav>
+   @show
+
+   <div class="container" style="margin-top:30px">
+       @yield('content')
+   </div>
+
+   @section('footer')
+       <div class="jumbotron text-center" style="margin-bottom:0">
+         <p>@copyright in Viewblog data</p>
+       </div>
+   @show
+
+</body>
+</html>
+
+----------------------------------------------
+
+Create a another views page ⇒  blog_list.blade.php ⇒ some inheritance index page with page view code is ⇒
+
+Path is ⇒ resource/views/blog_list.blade.php
+
+
+@extends('index')
+@section('title','blog list')
+
+@section('header')
+   @parent
+@endsection
+
+@section('content')
+   @parent
+       <div class="container" style="margin-top:30px">
+         <div class="row">
+           <div class="col-sm-4">
+             <h2>About Me</h2>
+             <h5>Photo of me:</h5>
+             <div class="fakeimg">Fake Image</div>
+             <p>Some text about me in culpa qui officia deserunt mollit anim..</p>
+             <h3>Some Links</h3>
+             <p>Lorem ipsum dolor sit ame.</p>
+             <ul class="nav nav-pills flex-column">
+               <li class="nav-item">
+                 <a class="nav-link active" href="#">Active</a>
+               </li>
+               <li class="nav-item">
+                 <a class="nav-link" href="#">Link</a>
+               </li>
+               <li class="nav-item">
+                 <a class="nav-link" href="#">Link</a>
+               </li>
+               <li class="nav-item">
+                 <a class="nav-link disabled" href="#">Disabled</a>
+               </li>
+             </ul>
+             <hr class="d-sm-none">
+           </div>
+           <div class="col-sm-8">
+             <h2>TITLE HEADING</h2>
+             <h5>Title description, Dec 7, 2017</h5>
+             <div class="fakeimg">Fake Image</div>
+             <p>Some text..</p>
+             <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+             <br>
+             <h2>TITLE HEADING</h2>
+             <h5>Title description, Sep 2, 2017</h5>
+             <div class="fakeimg">Fake Image</div>
+             <p>Some text..</p>
+             <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+           </div>
+         </div>
+       </div>
+@endsection
+
+@section('footer')
+   @parent
+@endsection
+
+
+Show output is this url :   http://127.0.0.1:8000/viewblog
+
+==============================================================
+
+Eloquent (connection between controller and route process and how to create model etc...)
+
+In Eloquent not using query in database , but use only functions of eloquent fetch all value using in Laravel project ... 
+
+Create model in your project using this command : 
+
+$ php artisan make:model Blog
+
+Model create successfully ⇒   App/Blog.php   ⇒ model created by user ⇒
+
+
+
+And create a controller of yours project using this commands :
+
+$ php artisan make:controller Blog
+
+App/http/controller/Blog.php ⇒ controller creates successfully and code is some change and define new functions …
+
+Migrate the command using last 5 list updates some changes is ⇒
+
+$ php artisan migrate:rollback --step=5
+
+$ php artisan migrate --force
+
+$ php artisan make:migration create_table_Blog_model
+
+$ php artisan migrate
+
+-------------------------------------------------------------------
+Some changes of 16_02_2020_table_Blog_model.php
+
+Create some changes code is : ⇒ app\database\migrations\16_02_2020_table_Blog_model.php ⇒
+
+
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreateTableBlogModels extends Migration
+{
+   /**
+    * Run the migrations.
+    *
+    * @return void
+    */
+   public function up()
+   {
+       Schema::create('table_blog_models', function (Blueprint $table) {
+           $table->bigIncrements('id');
+           $table->string('title');
+           $table->string('description');
+           $table->string('product_name');
+           $table->string('product_price');
+           $table->timestamps();
+       });
+   }
+
+   /**
+    * Reverse the migrations.
+    *
+    * @return void
+    */
+   public function down()
+   {
+       Schema::dropIfExists('table_blog_models');
+   }
+}
+
+--------------------------------------------------------
+
+Create route /web.php ⇒
+
+//how to using  Eloquent  method of function (route model and controller combination to going this url data)
+Route::get('blog_url','Blog_url@Blog_list');
+
+
+----------------------------------------------
+
+Create make controller is : make controller is ⇒ Blog_url.php ⇒
+
+Controller code is ⇒ App/http/controller/Blog_url.php ⇒
+
+
+<?php
+
+namespace App\Http\Controllers;
+use Illuminate\Database\QueryException;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Blog_model;
+
+class Blog_url extends Controller
+{
+   public function Blog_list()
+   {
+       //return Blog_model::all();
+       $blog_list = Blog_model::where('title','Main')
+                              ->orderBy('id','desc')
+                              ->get();
+       return view('blog',['data'=>$blog_list]);
+   }
+
+}
+
+
+---------------------------------------
+
+Create make model is : make model is ⇒
+
+Model code is ⇒
+App/Blog_model.php ⇒
+
+
+
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Blog_model extends Model
+{
+   public $table = "table_blog_models";
+}
+
+------------------------------------------------------
+
+Create resource/view/blog.blade.php ⇒
+
+Code is : create code is ⇒
+
+<a href={{url('/')}}> Back to welcome </a>
+
+<!doctype html>
+<html lang="en">
+ <head>
+   <!-- Required meta tags -->
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+   <!-- Bootstrap CSS -->
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+   <!-- Optional JavaScript -->
+   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+   <title>Json Data</title>
+ </head>
+ <body>
+   <h1>Hello, world!</h1>
+
+    @foreach($data as $blog)
+       <ul>
+           <li>{{ $blog->id }}</li>
+           <li>{{ $blog->title }}</li>
+           <li>{{ $blog->description }}</li>
+           <li>{{ $blog->product_name }}</li>
+           <li>{{ $blog->product_price }}</li>
+       </ul>
+    @endforeach
+ </body>
+</html>
+
+
+
+
+Output is url data show url is :  http://127.0.0.1:8000/blog_url
+Output is :
+
+
+
+
+==================================================================
+Run command is :  $  php artisan storage:link
+The [public/storage] directory has been linked.
+
+Store images path created this upload all photo this path >>==>
+
+C:\xampp\htdocs\blog\storage\app\public
+
+Create a controller in Laravel project After code paste in file..
+
+App/http/controller/Blog_url.php ⇒  code is ⇒
+
+<?php
+
+namespace App\Http\Controllers;
+use Illuminate\Database\QueryException;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Blog_model;
+
+class Blog_url extends Controller
+{
+   public function Blog_list()
+   {
+       //return Blog_model::all();
+       $blog_list = Blog_model::where('title','Main')
+                              ->orderBy('id','desc')
+                              ->get();
+       return view('blog',['data'=>$blog_list]);
+   }
+
+   public function blog_submit(Request $req)
+   {
+       $path = $req->file('blog_image')->store('public');
+       //print_r($path);
+       $blog = new Blog_model();
+       $blog->title = $req->title;
+       $blog->description = $req->description;
+       $blog->product_name = $req->product_name;
+       $blog->product_price = $req->product_price;
+       //$blog->remember_token = $req->_token;
+       //$blog->assets = $req->$path;
+       $blog->save();
+       echo "Inserted value successfully .<br>";
+       print_r($path);
+   }
+
+}
+------------------------------------------
+Create model is :  App/Blog_model.php  ⇒  code is ⇒
+
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Blog_model extends Model
+{
+   public $table = "table_blog_models";
+}
+
+
+------------------------------------------------
+After create a route/web.php ⇒  code is create some url ⇒
+
+//fetch Upload image in yours database and public folder uploaded successfully in yours Laravel project this url hits ..
+Route::get('blogform/', function () {
+   return view('blogform');
+});
+Route::post('get_blog/','Blog_url@blog_submit');
+
+
+---------------------------------------------------
+
+Create Some view page ⇒ code is ⇒ resource/views/blogform.blade.php ⇒
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<form class="container" action="{{ url('get_blog/') }}" method="POST" enctype="multipart/form-data">
+ @csrf
+ <h2 class="text-center"> Fill Blog Form </h2>
+ <div class="form-group">
+   <label for="title">Title</label>
+   <input type="text" class="form-control" name="title" placeholder="Enter Title">
+ </div>
+ <div class="form-group">
+   <label for="description">Description</label>
+   <textarea type="text" class="form-control" name="description"> </textarea>
+ </div>
+ <div class="form-group">
+   <label for="product_name">Product Name</label>
+   <input type="text" class="form-control" name="product_name" placeholder="Enter Product Name">
+ </div>
+ <div class="form-group">
+   <label for="product_price">Product Price</label>
+   <input type="text" class="form-control" name="product_price" placeholder="Enter Price Of Product">
+ </div>
+ <div class="form-group">
+   <label for="file_name">Blog Image</label>
+   <input type="file" class="form-control-file" name="blog_image">
+ </div>
+ <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
+
+Output check is this url:   http://127.0.0.1:8000/blogform
+
+====================================================================
+
+How To send mail In Laravel Project Using Php code ⇒
+
+How to send mail in Laravel 6 ?
+Do you want to send mail using SMTP in laravel 6? then I will give your real-time example how to send mail in laravel 6?
+Step 1: Create a laravel 6 project
+laravel new laravel_sendmail
+Step 2: Open laravel project set .env configuration
+MAIL_DRIVER=smtp
+MAIL_HOST=smtp.googlemail.com
+MAIL_PORT=465
+MAIL_USERNAME=your_gmail_id@gmail.com
+MAIL_PASSWORD=gmail_password
+MAIL_ENCRYPTION=ssl
+Step 2: Add Route with routes/web.php
+Route::get('send-mail','MailSend@mailsend');
+Stage 3: Create Mail
+In this progression, we will make mail class SendMail for email sending. Here we will compose code for which view will call and the question of the client. So we should run cry direction. you can check inside application/Mail/SendMail.php
+php artisan make:mail SendMail
+Add code within SendMail.php
+<?php
+  
+namespace App\Mail;
+   
+use Illuminate\Bus\Queueable;
+use Illuminate\Mail\Mailable;
+use Illuminate\Queue\SerializesModels;
+use Illuminate\Contracts\Queue\ShouldQueue;
+  
+class SendMail extends Mailable
+{
+    use Queueable, SerializesModels;
+  
+    public $details;
+   
+    /**
+     * Create a new message instance.
+     *
+     * @return void
+     */
+    public function __construct($details)
+    {
+        $this->details = $details;
+    }
+   
+    /**
+     * Build the message.
+     *
+     * @return $this
+     */
+     public function build()
+    {
+        return $this->subject('Mail from Real Programmer')
+                    ->view('emails.sendmail');
+    }
+}
+Step 4: Create a controller
+php artisan make:controller MailSend
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use \App\Mail\SendMail;
+class MailSend extends Controller
+{
+    public function mailsend()
+    {
+        $details = [
+            'title' => 'Title: Mail from Real Programmer',
+            'body' => 'Body: This is for testing email using smtp'
+        ];
+
+        \Mail::to('siddharth.shukla@kreativstreet.com')->send(new SendMail($details));
+        return view('emails.thanks');
+    }
+}
+ 
+Step 5: Create Blade View
+In this step, we will make a sharp edge view record and compose an email that we need to send. presently we simply keep in touch with some spurious content. make cry records on “messages” envelope.
+resources/views/emails/sendmail.blade.php
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Real Programmer</title>
+</head>
+<body>
+    <h1>{{ $details['title'] }}</h1>
+    <p>{{ $details['body'] }}</p>
+    <p>Thank you</p>
+</body>
+</html>
+Step 6: Thanks message to show the user. create blade file within
+view/emails/thanks.blade.php
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Thanks</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+	<div class="container">
+		<div class="alert alert-success" role="alert">
+		 	Thanks, we will contact you soon
+		</div>
+	 </div>
+</body>
+</html>
+Step 7: Change config/mail.php
+'from' => [
+        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
+        'name' => env('MAIL_FROM_NAME', 'Real Programmer'),
+    ],
+Step 8: Now run the server
+php artisan serve
+Step 9: now hit on URL
+http://localhost:8000/send-mail
+
+
+
+
+
+====================================================================
+How to create pdf file in laravel project using php code ⇒
+
+Create project command is xampp/htdocs ⇒
+
+$ laravel new laravel6_pdf(project-name)
+
+Any package download in laravel project like pdf package run command 
+
+$ composer require barryvdh/laravel-dompdf
+
+-------------------------------------------------
+
+config/app.php ⇒
+Add provider library is : 
+Provider =[“
+
+Barryvdh\DomPDF\ServiceProvider::class,
+
+“]
+
+Aliases = [“
+
+	‘PDF’=> Barryvdh\DomPDF\Facade::class,
+
+“]
+--------------------------------------------
+After create a controller in yours application is : 
+
+$  php artisan make:controller PDFController
+
+app/http/contoller/PDFController.php ⇒   code ⇒
+
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use PDF;
+
+class PDFController extends Controller
+{
+   public function PDFgenerator()
+   {
+       $pdf = PDF::loadview('Realprogrammer');
+       return $pdf->download('realprogrammer.pdf');
+   }
+}
+
+---------------------------------------------------
+resource/views/Realprogrammer.blade.php ⇒   code ⇒
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>PDF generator</title>
+</head>
+<body>
+   <h1>PDF Generator</h1>
+   <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae odit quisquam doloremque, obcaecati
+    ratione maxime sapiente quasi explicabo a, culpa consectetur aperiam odio hic voluptas qui, voluptatibus
+    eveniet vitae dolorum.</p>
+</body>
+</html>
+
+-----------------------------------------------
+
+route/web.php ⇒    code ⇒
+
+Route::get('/pdf-download','PDFController@PDFgenerator');
+
+Output link ⇒   127.0.0.1:8000/pdf-download
+--------------------------------------------------
+Change some port command using the command is :
+
+$ php artisan serve --port=9000
+Output url is : http://127.0.0.1:9000
+
+==========================================================================
+
+How to load js bootstrap css in laravel project ⇒
+
+
+Create a project command in laravel project inside cmd ⇒
+
+$ laravel new laravel_vewjs
+$ cd laravel_viwjs
+# require package is laravel project inside this one : 
+$ composer require laravel/ui
+$ php artisan ui vue --auth
+$ npm install && npm run dev
+# mysql database using in cmd 
+$ mysql -u root -p
+$ password
+$ create database laravel_vewjs
+$ php artisan migrate
+
+--------------------------------------------
+
+Set .env file database name : open port is 
+http://127.0.0.1:8000/
+http://127.0.0.1:8000/Login
+http://127.0.0.1:8000/register
+
+Register with gmail and password after logout and same gmail and password match and run to same dashboard open easy ok ..
+
+==============================================================
+
+How to use multiple authentication guards in Laravel 6 app
+								
+			 		 	
+
+
+	 		 		
+			
+Prerequisites
+PHP >= 7.1.3
+OpenSSL PHP Extension
+PDO PHP Extension
+Mbstring PHP Extension
+Tokenizer PHP Extension
+XML PHP Extension
+Ctype PHP Extension
+JSON PHP Extension
+Getting started
+Check all Prerequisites are installed in your machine. then this tutorial is already looking for you, we will create 3 user class – admin, blogger, user and we will make guards for 3 user classes and restriction different parts of the application based on those guards.
+Create the application
+We need to run command to create laravel 6 projects.
+laravel new laravel_multi
+After creating the app, now comes on the folder.
+cd laravel_multi
+Now configure database in .env file
+Example:
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=laravel_multi
+DB_USERNAME=root
+DB_PASSWORD=root@123
+Now we will make migrations for admins and bloggers tables in laravel already have users migration.we can extend further specific needs.
+Create migration for admins
+Making the admin table, run these command.
+php artisan make:migration create_admins_table
+Now the database/migrations directory open the admins migrations file and replace up function.
+public function up()
+    {
+        Schema::create('admins', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->string('password');
+            $table->boolean('is_super')->default(false);
+            $table->rememberToken();
+            $table->timestamps();
+        });
+    }
+Now, create a migration for bloggers
+
+Making the admin table, run these command.
+php artisan make:migration create_bloggers_table
+Now, open the bloggers migrations file and edit it as follows:
+database/migrations/_create_bloggers_table.php
+public function up()
+    {
+        Schema::create('bloggers', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->string('password');
+            $table->boolean('is_editor')->default(false);
+            $table->rememberToken();
+            $table->timestamps();
+        });
+    }
+Here we have created a simple migration and defined the columns.
+Now, migrate the database
+we have defined our tables, run migrate:
+php artisan migrate
+Now, we have 3 different tables users, admins, blogger to use these different tables to authenticate, we need to define 3 models for them. These models will be like the user model and extend the Authenticable class.
+the user model and extends the Authenticable class.
+Admin model
+To make the model for the admins, run the following command:
+php artisan make:model Admin
+Open the Admin model in app/Admin.php and add the following:
+<?php
+
+    namespace App;
+
+    use Illuminate\Notifications\Notifiable;
+    use Illuminate\Foundation\Auth\User as Authenticatable;
+
+    class Admin extends Authenticatable
+    {
+        use Notifiable;
+
+        protected $guard = 'admin';
+
+        protected $fillable = [
+            'name', 'email', 'password',
+        ];
+
+        protected $hidden = [
+            'password', 'remember_token',
+        ];
+    }
+Bloggers model
+To make the model for the blogger, run the following command:
+php artisan make:model Blogger
+Then open the Blogger model and replace with the following:
+<?php
+
+    namespace App;
+
+    use Illuminate\Notifications\Notifiable;
+    use Illuminate\Foundation\Auth\User as Authenticatable;
+
+    class Blogger extends Authenticatable
+    {
+        use Notifiable;
+
+        protected $guard = 'blogger';
+
+        protected $fillable = [
+            'name', 'email', 'password',
+        ];
+
+        protected $hidden = [
+            'password', 'remember_token',
+        ];
+    }
+Define the guards
+Open config/auth.php and add the new guards edit as follows:
+'guards' => [
+        'web' => [
+            'driver' => 'session',
+            'provider' => 'users',
+        ],
+
+        'api' => [
+            'driver' => 'token',
+            'provider' => 'users',
+        ],
+
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admins',
+        ],
+        
+        'blogger' => [
+            'driver' => 'session',
+            'provider' => 'bloggers',
+        ],
+    ],
+We added two new guards admin and blogger and set their providers. These providers tell Laravel what to use for authentication or validation when we try to use the guard.
+'providers' => [
+        'users' => [
+            'driver' => 'eloquent',
+            'model' => App\User::class,
+        ],
+
+        'admins' => [
+            'driver' => 'eloquent',
+            'model' => App\Admin::class,
+        ],
+
+        'bloggers' => [
+            'driver' => 'eloquent',
+            'model' => App\Blogger::class,
+        ],
+Modify LoginController
+<?php
+
+namespace App\Http\Controllers\Auth;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Auth;
+
+
+class LoginController extends Controller
+{
+    
+    /*
+    |--------------------------------------------------------------------------
+    | Login Controller
+    |--------------------------------------------------------------------------
+    |
+    | This controller handles authenticating users for the application and
+    | redirecting them to your home screen. The controller uses a trait
+    | to conveniently provide its functionality to your applications.
+    |
+    */
+
+    use AuthenticatesUsers;
+
+    /**
+     * Where to redirect users after login.
+     *
+     * @var string
+     */
+    protected $redirectTo = '/home';
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+   
+    public function __construct()
+    {
+            $this->middleware('guest')->except('logout');
+            $this->middleware('guest:admin')->except('logout');
+            $this->middleware('guest:blogger')->except('logout');
+    }
+
+     public function showAdminLoginForm()
+    {
+        return view('auth.login', ['url' => 'admin']);
+    }
+
+    public function adminLogin(Request $request)
+    {
+        $this->validate($request, [
+            'email'   => 'required|email',
+            'password' => 'required|min:6'
+        ]);
+
+        if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
+
+            return redirect()->intended('/admin');
+        }
+        return back()->withInput($request->only('email', 'remember'));
+    }
+
+     public function showBloggerLoginForm()
+    {
+        return view('auth.login', ['url' => 'blogger']);
+    }
+
+    public function bloggerLogin(Request $request)
+    {
+        $this->validate($request, [
+            'email'   => 'required|email',
+            'password' => 'required|min:6'
+        ]);
+
+        if (Auth::guard('blogger')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
+
+            return redirect()->intended('/blogger');
+        }
+        return back()->withInput($request->only('email', 'remember'));
+    }
+}
+
+Now, Modify RegisterController
+Open RegisterController and add these code:
+<?php
+
+namespace App\Http\Controllers\Auth;
+
+use App\User;
+use App\Admin;
+use App\Blogger;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
+
+class RegisterController extends Controller
+{
+    /*
+    |--------------------------------------------------------------------------
+    | Register Controller
+    |--------------------------------------------------------------------------
+    |
+    | This controller handles the registration of new users as well as their
+    | validation and creation. By default this controller uses a trait to
+    | provide this functionality without requiring any additional code.
+    |
+    */
+
+    use RegistersUsers;
+    /**
+     * Where to redirect users after registration.
+     *
+     * @var string
+     */
+    protected $redirectTo = '/home';
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('guest');
+        $this->middleware('guest:admin');
+        $this->middleware('guest:blogger');
+    }
+
+    /**
+     * Get a validator for an incoming registration request.
+     *
+     * @param  array  $data
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
+    protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6|confirmed',
+        ]);
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function showAdminRegisterForm()
+    {
+        return view('auth.register', ['url' => 'admin']);
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function showBloggerRegisterForm()
+    {
+        return view('auth.register', ['url' => 'blogger']);
+    }
+
+    /**
+     * @param array $data
+     *
+     * @return mixed
+     */
+    protected function create(array $data)
+    {
+        return User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+        ]);
+    }
+
+    /**
+     * @param Request $request
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    protected function createAdmin(Request $request)
+    {
+        $this->validator($request->all())->validate();
+        Admin::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+        return redirect()->intended('login/admin');
+    }
+
+    /**
+     * @param Request $request
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    protected function createBlogger(Request $request)
+    {
+        $this->validator($request->all())->validate();
+        Blogger::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+        return redirect()->intended('login/blogger');
+    }
+}
+
+Next, let us define methods for creating a blogger:
+registration is complete.
+Set up authentication pages
+Laravel’s laravel/ui package provides a quick way to scaffold all of the routes and views you need for authentication using a few simple commands:
+composer require laravel/ui --dev
+
+php artisan ui vue --auth
+
+npm install && npm run dev
+Open the login.blade.php file and edit as follows:
+// resources/views/auth/login.blade.php
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header"> {{ isset($url) ? ucwords($url) : ""}} {{ __('Login') }}</div>
+
+                <div class="card-body">
+                    @isset($url)
+                    <form method="POST" action='{{ url("login/$url") }}' aria-label="{{ __('Login') }}">
+                    @else
+                    <form method="POST" action="{{ route('login') }}" aria-label="{{ __('Login') }}">
+                    @endisset
+                        @csrf
+
+</div>
+We are checking if we passed a URL parameter to the page when we called it. If we did, we modify the forms action to use the URL parameter. We also modified the header of the form so that it shows the type of user based on their login parameter.
+Open the register.blade.php file and edit as follows:
+// resources/views/auth/register.blade.php
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header"> {{ isset($url) ? ucwords($url) : ""}} {{ __('Register') }}</div>
+
+                <div class="card-body">
+                    @isset($url)
+                    <form method="POST" action='{{ url("register/$url") }}' aria-label="{{ __('Register') }}">
+                    @else
+                    <form method="POST" action="{{ route('register') }}" aria-label="{{ __('Register') }}">
+                    @endisset
+                        @csrf
+
+</div>
+We replicated what we did for login page here.
+Create the pages authenticated users will access
+Now that we are done setting up the login and register page, let us make the pages the admin and bloggers will see when they are authenticated. Open the terminal and run the following commands to create new files. Next, we will insert the corresponding code snippets to the files.
+touch resources/views/layouts/auth.blade.php
+touch resources/views/admin.blade.php
+touch resources/views/blogger.blade.php
+touch resources/views/home.blade.php
+Insert this code block into the auth.blade.php file:
+// resources/views/layouts/auth.blade.php
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <title>{{ config('app.name', 'Laravel') }}</title>
+
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
+
+    <!-- Fonts -->
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
+
+    <!-- Styles -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
+            <div class="container">
+                <a class="navbar-brand" href="{{ url('/') }}">
+                    {{ config('app.name', 'Laravel') }}
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <!-- Left Side Of Navbar -->
+                    <ul class="navbar-nav mr-auto">
+
+                    </ul>
+
+                    <!-- Right Side Of Navbar -->
+                    <ul class="navbar-nav ml-auto">
+                        <!-- Authentication Links -->
+                       <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                Hi There <span class="caret"></span>
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
+                                </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <main class="py-4">
+            @yield('content')
+        </main>
+    </div>
+</body>
+</html>
+Next, insert this code block into the admin.blade.php file:
+// resources/views/admin.blade.php
+@extends('layouts.auth')
+
+@section('content')
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">Dashboard</div>
+
+                <div class="card-body">
+                    Hi boss!
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
+Open the blogger.blade.php file and edit as follows:
+// resources/views/blogger.blade.php
+@extends('layouts.auth')
+
+@section('content')
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">Dashboard</div>
+
+                <div class="card-body">
+                    Hi there, awesome blogger
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
+
+Finally, open the home.blade.php file and replace with the following:
+// resources/views/home.blade.php
+@extends('layouts.auth')
+
+@section('content')
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">Dashboard</div>
+
+                <div class="card-body">
+                     Hi there, regular user
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
+Set up the routes
+Our application is almost ready. Let us define the routes to access all the pages we have created so far. Open the routes/web.php file and replace with the following:
+/ routes/web.php
+<?php
+Route::view('/', 'welcome');
+Auth::routes();
+
+Route::get('/login/admin', 'Auth\LoginController@showAdminLoginForm');
+Route::get('/login/blogger', 'Auth\LoginController@showBloggerLoginForm');
+Route::get('/register/admin', 'Auth\RegisterController@showAdminRegisterForm');
+Route::get('/register/blogger', 'Auth\RegisterController@showBloggerRegisterForm');
+
+Route::post('/login/admin', 'Auth\LoginController@adminLogin');
+Route::post('/login/blogger', 'Auth\LoginController@bloggerLogin');
+Route::post('/register/admin', 'Auth\RegisterController@createAdmin');
+Route::post('/register/blogger', 'Auth\RegisterController@createBlogger');
+
+Route::view('/home', 'home')->middleware('auth');
+Route::view('/admin', 'admin');
+Route::view('/blogger', 'blogger');
+So, to solve that, open the app/Http/Controllers/Middleware/RedirectIfAuthenticated.php file and replace with this:
+// app/Http/Controllers/Middleware/RedirectIfAuthenticated.php
+
+<?php
+
+namespace App\Http\Middleware;
+
+use Closure;
+use Illuminate\Support\Facades\Auth;
+
+class RedirectIfAuthenticated
+{
+    public function handle($request, Closure $next, $guard = null)
+    {
+        if ($guard == "admin" && Auth::guard($guard)->check()) {
+            return redirect('/admin');
+        }
+        if ($guard == "blogger" && Auth::guard($guard)->check()) {
+            return redirect('/blogger');
+        }
+        if (Auth::guard($guard)->check()) {
+            return redirect('/home');
+        }
+
+        return $next($request);
+    }
+}
+The RedirectIfAuthenticated middleware receives the auth guard as a parameter. This middleware is triggered when we try to visit any page meant for authenticated users. We can then determine the type of authentication the user has and redirect them accordingly.
+Modify authentication exception handler
+There is a little annoying thing that would happen when a user is redirected. You would expect that if a user tries to access say /blogger but is not authenticated, the user is redirected to /login/blogger, yes? Well, they don’t. They get redirected to /login which is not what we want.
+To ensure that when a user tries to visit /blogger they are redirected to /login/blogger or the same for /admin, we have to modify the exception handler. Open the handler file in app/Exceptions and add the following:
+// app/Exceptions/Handler.php
+
+<?php
+
+namespace App\Exceptions;
+
+use Exception;
+use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Auth\AuthenticationException;
+use Auth;
+class Handler extends ExceptionHandler
+{
+    protected function unauthenticated($request, AuthenticationException $exception)
+    {
+        if ($request->expectsJson()) {
+            return response()->json(['error' => 'Unauthenticated.'], 401);
+        }
+        if ($request->is('admin') || $request->is('admin/*')) {
+            return redirect()->guest('/login/admin');
+        }
+        if ($request->is('blogger') || $request->is('blogger/*')) {
+            return redirect()->guest('/login/blogger');
+        }
+        return redirect()->guest(route('login'));
+    }
+}
+
+The unauthenticated method we just added resolves this issue we have. It receives an AuthenticationExpection exception by default which carries that guard information. Sadly, we cannot access that, because it is protected (hopefully, Laravel 6.0 will come with a way to access it).
+Run the application
+Now that our application is ready, run the following command to get it up:
+php artisan key:generate
+php artisan serve
+It should typically be available on http://localhost:8000.
+Remember to visit http://localhost:8000/register/blogger and http://localhost:8000/register/admin to register bloggers and admins respectively. Then visit http://localhost:8000/login/blogger and http://localhost:8000/login/admin to log in the bloggers and admins respectively.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
